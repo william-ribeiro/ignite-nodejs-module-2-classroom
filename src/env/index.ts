@@ -10,10 +10,8 @@ config({ path: '.env' })
 
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('production'),
-  PORT: z
-    .string()
-    .default('4452')
-    .transform((value) => +value),
+  PORT: z.coerce.number().default(4452),
+  DATABASE_CLIENT: z.enum(['sqlite', 'pg']),
   DATABASE_URL: z.string(),
 })
 
